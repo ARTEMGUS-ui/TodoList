@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList by Artemgus | General</title>
+</head>
+<body>
+    <input type="text" id="my-input">
+    <button id="addBtn">add</button>
+    <ul id="todoList">
+        <li><label for=""><input type="checkbox">Testing</label></li>
+    </ul>
+<script>
+    const button = document.getElementById('addBtn');
+    const list = document.getElementById('todoList');
+    const input = document.getElementById('my-input');
+
+    button.addEventListener('click', () => {
+        const content = input.value.trim();
+        if (content === '') return; 
+
+        const newLi = document.createElement('li');
+        newLi.innerHTML = `<label><input type="checkbox">${content}</label>`;
+        list.appendChild(newLi);
+        
+        input.value = ''; 
+    });
+    list.addEventListener('change', (event) => {
+        if (event.target.type === 'checkbox') {
+            const listItem = event.target.closest('li');
+            listItem.remove(); 
+        }
+    });
+</script>
+
+</body>
+</html>
